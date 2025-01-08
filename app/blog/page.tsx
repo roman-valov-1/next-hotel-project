@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 
 async function getData() {
-  const response = await fetch('https://jsonplaceholder.typicode.com/posts', {
+  const response = await fetch(`${process.env.DEV_URL}/api/posts`, {
     next: {
       revalidate: 60
     }
@@ -10,7 +10,9 @@ async function getData() {
 
   if (!response.ok) throw new Error("Unable to fetch posts")
 
-  return response.json();
+  const data = await response.json()
+
+  return data;
 
   //запрос данных в серверной компоненте
 }
