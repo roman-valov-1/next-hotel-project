@@ -1,39 +1,25 @@
-import { Metadata } from "next";
-import Link from "next/link";
+'use client';
+import Posts from "@/components/Posts/Posts";
+import PostSearch from "@/components/PostSearch/PostSearch";
+import { getAllPosts } from "@/services/getAllPosts";
+import { useEffect, useState } from "react";
 
-async function getData() {
-  const response = await fetch(`${process.env.DEV_URL}/api/posts`, {
-    next: {
-      revalidate: 60
-    }
-  });
+export default function Blog() {
+  const [posts, setPosts] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  if (!response.ok) throw new Error("Unable to fetch posts")
-
-  const data = await response.json()
-
-  return data;
-
-  //запрос данных в серверной компоненте
-}
-
-export const metadata: Metadata = {
-  title: 'Blog',
-}
-
-export default async function Blog() {
-  const posts = await getData();
+  useEffect(() => {
+    getAllPosts()
+      .then(setPosts)
+      .finally(() => setIsLoading(false))
+  }, [])
 
   return (
     <>
       <h1>Blog</h1>
-      <ul>
-        {posts.map((post: any) => {
-          return <li key={post.id}>
-            <Link href={`/blog/${post.id}`}>{post.title}</Link>
-          </li>
-        })}
-      </ul>
+      <PostSearch onSearch={setPosts}/>
+      {isLoading && <h3>Loading...</h3>}
+      <Posts posts={posts} />
     </>
   )
 }

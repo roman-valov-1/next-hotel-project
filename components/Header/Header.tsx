@@ -1,12 +1,16 @@
-import Link from "next/link";
 import styles from './Header.module.css';
+import Navigation from "../Navigation/Navigation";
+
+const navItems = [
+  { label: 'Home', href: '/'},
+  { label: 'About', href: '/about'},
+  { label: 'Blog', href: '/blog'}
+]
 
 export default function Header() {
   return (
     <header className={styles.header}>
-      <Link href="/">Home</Link>
-      <Link href="/about">About</Link>
-      <Link href="/blog">Blog</Link>
+      <Navigation navLinks={navItems} />
     </header>
   )
 }
