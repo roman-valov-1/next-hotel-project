@@ -1,0 +1,71 @@
+.button,
+.button-secondary,
+.button-with-arrow {
+   display: block;
+   text-align: center;
+   border-radius: 22px;
+   padding: 15px 20px 15px 20px;
+   font-size: 12px;
+   line-height: 15px;
+   text-decoration: none;
+   text-transform: uppercase;
+   font-weight: 700;
+   border: none;
+   cursor: pointer;
+   outline: none;
+}
+
+.button:disabled,
+.button-secondary:disabled,
+.button-with-arrow:disabled {
+   opacity: 0.6;
+   pointer-events: none;
+   cursor: not-allowed;
+}
+
+.button {
+   color: var(--white);
+   background-color: var(--purple);
+}
+
+.button:hover,
+.button:focus {
+   background: var(--secondaryGradient);
+   transition: 0.3s all ease;
+}
+
+.button-secondary {
+   color: var(--purple);
+   background-color: #fff;
+   border: 2px solid var(--purple);
+}
+
+.button-secondary:hover,
+.button-secondary:focus {
+   color: var(--green);
+   border: 2px solid var(--green);
+   transition: 0.3s all ease;
+}
+
+.button-with-arrow {
+   background: var(--primaryGradient);
+   color: #fff;
+   position: relative;
+   padding-right: 40px;
+}
+
+.button-with-arrow::after {
+   content: '';
+   position: absolute;
+   width: 18px;
+   height: 18px;
+   right: 13px;
+   top: 13px;
+   background: url('../assets/arrow_forward.svg');
+}
+
+.button-with-arrow:hover,
+.button-with-arrow:focus {
+   background: var(--secondaryGradient);
+   transition: 0.3s all ease;
+}

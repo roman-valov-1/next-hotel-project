@@ -1,3 +1,4 @@
+import { Button } from "@/ui-kit/Button/Button";
 import { Metadata } from "next"
 
 async function getAboutInfo() {
@@ -16,6 +17,12 @@ async function getAboutInfo() {
   //запрос данных в серверной компоненте
 }
 
+interface IAboutItem {
+  userId: number;
+  id: number;
+  title: string;
+  body: string;
+}
 
 export const metadata: Metadata = {
   title: 'About',
@@ -28,10 +35,13 @@ export default async function About() {
     <>
       <h3>Select subitem</h3>
       <ul>
-        {about.map(item => {
+        {about.map((item: IAboutItem) => {
           return (
             <li key={item.id}>
-              {item.title}
+              <Button
+                variant="primary"
+                text={item.title}
+              />
             </li>
           )
         })}

@@ -3,15 +3,16 @@ import { headers, cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { posts } from '../posts';
 
-export async function GET(req: Request, { params }: {params: {id: string}}) {
-   const id = +params.id;
+export async function GET(req: Request, { params }: { params: Promise<{ id: string }> }) {
+   console.log(params)
+   const id = +(await params).id;
 
    return NextResponse.json(posts.find(post => post.id === id));
 }
 //получения поста по id с помощью динамического роутинга
 
-export async function DELETE(req: Request, { params }: {params: { id: string } }) {
-   const id = params.id;
+export async function DELETE(req: Request, { params }: {params: Promise<{ id: string }>}) {
+   const id = +(await params).id;
 
    const headerList = headers();
    const type = (await headerList).get('Content-Type');
