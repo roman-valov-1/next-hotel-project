@@ -1,5 +1,6 @@
 import styles from './Header.module.css';
 import Navigation from "../Navigation/Navigation";
+import { SwitchInput } from '@/ui-kit/SwitchInput/SwitchInput';
 
 const navItems = [
   { label: 'Home', href: '/'},

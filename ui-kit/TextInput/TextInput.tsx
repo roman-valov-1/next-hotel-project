@@ -1,6 +1,7 @@
-import styles from './Input.module.css';
+import { ChangeEventHandler } from 'react';
+import styles from './TextInput.module.css';
 
-export interface InputProps {
+export interface InputProps extends ChangeEventHandler<HTMLInputElement> {
    placeholder: string;
    type: string;
    title?: string;
@@ -8,11 +9,12 @@ export interface InputProps {
    onChange?: () => void;
 }
 
-export const Input = ({
+export const TextInput = ({
    placeholder,
    type,
    title,
    disabled = false,
+   onChange,
    ...props
 }: InputProps) => {
 
@@ -31,6 +33,7 @@ export const Input = ({
             disabled={disabled}
             placeholder={placeholder}
             id={title}
+            onChange={onChange}
             {...props}
          />
       </div>

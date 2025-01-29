@@ -1,0 +1,58 @@
+.radio-label {
+   position: relative;
+}
+
+.radio-item {
+   position: absolute;
+   left: 3px;
+   visibility: hidden;
+}
+
+.radio-label span {
+   outline: none;
+   cursor: pointer;
+}
+
+.radio-button {
+   position: relative;
+   display: block;
+   width: 20px;
+   height: 20px;
+   border: 1px solid var(--dark25);
+   border-radius: 50%;
+   outline: none;
+}
+
+.radio-button::after {
+   content: "";
+   position: absolute;
+   top: 3px;
+   left: 3px;
+   width: 12px;
+   height: 12px;
+   border-radius: 50%;
+   background-color: var(--dark25);
+   visibility: hidden;
+}
+
+
+/* States */
+.radio-item:checked + .radio-button {
+   border: 1px solid var(--purple);
+}
+
+.radio-item:checked + .radio-button::after {
+   background-color: var(--purple);
+   visibility: visible;
+}
+
+
+.radio-item:disabled + .radio-button,
+.radio-item:disabled + .radio-button::after {
+   opacity: 0.6;
+}
+
+
+.radio-item:required + .radio-button {
+   border: 1px solid red;
+}
