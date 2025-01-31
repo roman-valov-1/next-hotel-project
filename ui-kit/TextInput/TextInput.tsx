@@ -1,9 +1,9 @@
-import { ChangeEventHandler } from 'react';
+import { ChangeEventHandler, HtmlHTMLAttributes } from 'react';
 import styles from './TextInput.module.css';
 
-export interface InputProps extends ChangeEventHandler<HTMLInputElement> {
-   placeholder: string;
-   type: string;
+export interface InputProps extends HtmlHTMLAttributes<HTMLInputElement> {
+   placeholder?: string;
+   type?: string;
    title?: string;
    disabled?: boolean;
    onChange?: () => void;
@@ -11,7 +11,7 @@ export interface InputProps extends ChangeEventHandler<HTMLInputElement> {
 
 export const TextInput = ({
    placeholder,
-   type,
+   type = 'text',
    title,
    disabled = false,
    onChange,
